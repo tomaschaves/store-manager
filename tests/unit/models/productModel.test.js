@@ -1,0 +1,27 @@
+const chai = require('chai');
+const sinon = require('sinon');
+
+const { expect } = chai;
+const productModel = require('../../../src/models/productModel');
+const connection = require('../../../src/models/connection');
+const { products, singleProduct } = require('./productMock.model');
+
+describe('Product Model tests', function () {
+  afterEach(sinon.restore);
+
+  it('GetAll', async function () {
+    sinon.stub(connection, 'execute').resolves([products]);
+
+    const result = await productModel.getAllProducts();
+    expect(result).to.be.an('array');
+    expect(result).to.have.length(3);
+  });
+
+  it('GetId', async function () {
+    sinon.stub(connection, 'execute').resolves([singleProduct]);
+
+    const result = await productModel.getProductById(1);
+    expect(result).to.be.an('object');
+    expect(result).to.contain.keys(['id', 'name']);
+  });
+});
