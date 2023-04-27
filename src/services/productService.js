@@ -17,12 +17,12 @@ const getProductById = async (id) => {
 };
 
 const insertProduct = async (productName) => {
-  if (productName === undefined || !productName) {
-    return { type: 400, message: '"name" is required' };
-  }
-  
   if (productName.length < 5) {
     return { type: 422, message: '"name" length must be at least 5 characters long' };
+  }
+
+  if (productName === undefined || !productName) {
+    return { type: 400, message: '"name" is required' };
   }
 
   const productInserted = await modelProduct.insertProduct(productName);

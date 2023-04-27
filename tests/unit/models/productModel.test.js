@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const { expect } = chai;
 const productModel = require('../../../src/models/productModel');
 const connection = require('../../../src/models/connection');
-const { products, singleProduct, resultInsert, productName } = require('./productMock.model');
+const { products, singleProduct } = require('./productMock.model');
 
 describe('Tests model layer', function () {
   describe('Get Product Model tests', function () {
@@ -27,7 +27,7 @@ describe('Tests model layer', function () {
     });
   });
 
-  // describe('Register product Model tests', function () {
+  describe('Register product Model tests', function () {
   //   afterEach(sinon.restore);
 
   //   it('GetAll', async function () {
@@ -41,5 +41,5 @@ describe('Tests model layer', function () {
   //     // expect(result[0].affectedRows).to.be(1);
   //     // expect(result[0].insertId).to.be(2);
   //   });
-  // });
+  });
 });

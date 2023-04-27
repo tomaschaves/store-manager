@@ -12,7 +12,6 @@ describe('Product Controller tests', function () {
   afterEach(sinon.restore);
 
   it('GetAll', async function () {
-    // console.log('controller entrou no getAll');
     sinon.stub(productService, 'getAllProducts').resolves({ type: null, message: [products] });
     const res = {};
     const req = {};
