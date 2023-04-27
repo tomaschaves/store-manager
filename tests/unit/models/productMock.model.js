@@ -20,4 +20,33 @@ const singleProduct = [
   },
 ];
 
-module.exports = { products, singleProduct };
+const productName = 'produtoX';
+const objectInsert = { id: 7, name: 'produtoX' };
+
+// const resultInsert = [
+//   {
+//     fieldCount: 0,
+//     affectedRows: 1,
+//     insertId: 2,
+//     info: '',
+//     serverStatus: 2,
+//     warningStatus: 0,
+//   },
+//   undefined,
+// ];
+
+// {
+  // [
+  //   ResultSetHeader {
+  //     fieldCount: 0,
+  //     affectedRows: 1,
+  //     insertId: 4,
+  //     info: '',
+  //     serverStatus: 2,
+  //     warningStatus: 0
+  //   },
+  //   undefined
+  // ]
+// };
+
+module.exports = { products, singleProduct, objectInsert /* , resultInsert, productName */ };
