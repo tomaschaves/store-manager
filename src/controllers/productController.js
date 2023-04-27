@@ -20,7 +20,7 @@ const insertProduct = async (req, res) => {
   const { name } = req.body;
   const { type, message } = await serviceProduct.insertProduct(name);
 
-  if (type) return res.status(404).json({ message });
+  if (type) return res.status(type).json({ message });
 
   return res.status(201).json(message);
 };
