@@ -4,5 +4,7 @@ const { checkProductId, checkQuantity, checkExistence } = require('../middleware
 
 const salesRouter = express.Router();
 salesRouter.post('/', checkProductId, checkQuantity, checkExistence, salesController.insertSales);
+salesRouter.get('/', salesController.getAllSales);
+salesRouter.get('/:id', salesController.getSpecificSale);
 
 module.exports = salesRouter;

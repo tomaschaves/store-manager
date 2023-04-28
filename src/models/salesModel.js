@@ -25,4 +25,32 @@ const checkValidIds = async () => {
   return valueString.split(',');
 };
 
-module.exports = { insertSales, insertSaleProducts, checkIdsFromProducts, checkValidIds };
+const getAllSales = async () => {
+  const [result] = await connection.execute(
+    `SELECT product.sale_id AS saleId, date, product.product_id AS productId, product.quantity
+    FROM StoreManager.sales AS sale, StoreManager.sales_products AS product
+    WHERE sale.id = product.sale_id 
+    GROUP BY product.sale_id, sale.date, product.product_id, product.quantity
+    ORDER BY product.sale_id, product.product_id;`, [],
+  );
+  return result;
+};
+
+const getSpecificSale = async (id) => {
+  const [result] = await connection
+    .execute(
+      `SELECT date, product_id AS productId, quantity
+      FROM StoreManager.sales AS sales, StoreManager.sales_products AS sp
+      WHERE id = (?) AND sales.id = sp.sale_id;`, [id],
+    );
+  return result;
+};
+
+module.exports = {
+  insertSales,
+  insertSaleProducts,
+  checkIdsFromProducts,
+  checkValidIds,
+  getAllSales,
+  getSpecificSale,
+};

@@ -29,4 +29,22 @@ const insertProduct = async (productName) => {
   return { type: null, message: productInserted };
 };
 
-module.exports = { getAllProducts, getProductById, insertProduct };
+const updateProduct = async (id, productName) => {
+  if (productName === undefined || !productName) {
+    return { type: 400, message: { message: '"name" is required' } };
+  }
+  
+  if (productName.length < 5) {
+    return { type: 422, message: { message: '"name" length must be at least 5 characters long' } };
+  }
+
+  const updatedProduct = await modelProduct.updateProduct(id, productName);
+
+  if (updatedProduct.changedRows === 0) {
+    return { type: 404, message: { message: 'Product not found' } };
+  }
+  
+  return { type: 200, message: { id, name: productName } };
+};
+
+module.exports = { getAllProducts, getProductById, insertProduct, updateProduct };

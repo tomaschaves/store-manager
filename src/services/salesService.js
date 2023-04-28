@@ -18,4 +18,21 @@ const insertSaleProducts = async (saleId, sales) => {
   return { type: 201, message: returnObject };
 };
 
-module.exports = { insertSales, insertSaleProducts };
+const getAllSales = async () => {
+  const sales = await modelSales.getAllSales();
+  return { type: 200, message: sales };
+};
+
+const getSpecificSale = async (id) => {
+  const saleProducts = await modelSales.getSpecificSale(id);
+  if (saleProducts.length === 0) return { type: 404, message: { message: 'Sale not found' } };
+
+  return { type: 200, message: saleProducts };
+};
+
+module.exports = {
+  insertSales,
+  insertSaleProducts,
+  getAllSales,
+  getSpecificSale,
+};
