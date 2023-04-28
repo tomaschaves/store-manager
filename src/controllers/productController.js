@@ -31,6 +31,6 @@ const updateProduct = async (req, res) => {
   const { type, message } = await serviceProduct.updateProduct(Number(id), name);
 
   return res.status(type).json(message);
-};
+}; 
 
 module.exports = { getAllProducts, getProductById, insertProduct, updateProduct };
