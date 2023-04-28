@@ -6,9 +6,8 @@ const insertSales = async () => {
 };
 
 const insertSaleProducts = async (saleId, sales) => {
-  sales.forEach(async (sale) => {
-    modelSales.insertSaleProducts(saleId, sale.productId, sale.quantity);
-  });
+  await Promise.all(sales.map((sale) => 
+    modelSales.insertSaleProducts(saleId, sale.productId, sale.quantity)));
   
   const returnObject = {
     id: saleId,

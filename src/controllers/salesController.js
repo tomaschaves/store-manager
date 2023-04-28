@@ -18,7 +18,7 @@ const getSpecificSale = async (req, res) => {
   const { id } = req.params;
   const { type, message } = await serviceSales.getSpecificSale(Number(id));
   
-  return res.status(type).json(message); // tenho que retornar o objeto { "message": "Sale not found" }
+  return res.status(type).json(message);
 };
 
 module.exports = { insertSales, getAllSales, getSpecificSale };

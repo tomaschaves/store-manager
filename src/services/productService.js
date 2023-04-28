@@ -48,7 +48,6 @@ const updateProduct = async (id, productName) => {
 };
 
 const deleteProduct = async (id) => {
-  console.log('entrou no delete service');
   const deletedProduct = await modelProduct.deleteProduct(id);
 
   if (deletedProduct.affectedRows === 0) {
