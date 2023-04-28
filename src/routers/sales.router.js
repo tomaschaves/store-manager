@@ -1,9 +1,8 @@
 const express = require('express');
 const salesController = require('../controllers/salesController');
+const { checkProductId, checkQuantity, checkExistence } = require('../middlewares/checkFields');
 
 const salesRouter = express.Router();
-// salesRouter.get('/', productController.getAllProducts);
-// productsRouter.get('/:id', productController.getProductById);
-salesRouter.post('/', salesController.insertSales);
+salesRouter.post('/', checkProductId, checkQuantity, checkExistence, salesController.insertSales);
 
 module.exports = salesRouter;
